@@ -9,7 +9,8 @@ var fs = require('fs');
 var fsmk = require('node-fs');
 var properties = require('properties-parser');
 var path = require("path");
-var userServerAddress = process.env.USER_SERVER_ADDRESS || 'localhost';
+var userServerAddress = process.env.USER_SERVER_ADDRESS || '127.0.0.1';
+var userServerPort = process.env.USER_SERVER_PORT || '3001';
 
 var logDirectory = path.join(__dirname, 'logs/');
 if (!fs.existsSync(logDirectory)) {
@@ -108,7 +109,7 @@ else {
     }
     app.use(express.static(pathFiles));
 
-    app.listen(3001, function() {
-        console.log('Listening on port 3001...')
+    app.listen(userServerPort, function() {
+        console.log('Listening on port...', userServerPort);
     });
 }
