@@ -9,6 +9,7 @@ var fs = require('fs');
 var fsmk = require('node-fs');
 var properties = require('properties-parser');
 var path = require("path");
+var userServerAddress = process.env.USER_SERVER_ADDRESS || 'localhost';
 
 var logDirectory = path.join(__dirname, 'logs/');
 if (!fs.existsSync(logDirectory)) {
@@ -55,7 +56,7 @@ if (cluster.isMaster) {
         }
 
         if (!address.address) {
-            address.address = 'localhost';
+            address.address = userServerAddress;
         }
 
         fs.appendFileSync(path.join(logDirectory, 'pid.txt'), worker.process.pid + '=worker' + '\n');

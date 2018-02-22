@@ -8,8 +8,10 @@ function getDBUrl() {
 // Save a document
 exports.save = function (db, data, done) {
     data.timeStamp = new Date().getTime();
+    // todo: change the url to getDBUrl() + '/' + db
     var resourceUrl = getDBUrl() + '/' + db + '/' + data.id;
     console.log('Persistence : save : ' + resourceUrl);
+    // todo: change this request to a post method
     request.put({
         url: resourceUrl,
         body: data,
